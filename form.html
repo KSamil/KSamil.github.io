@@ -1,0 +1,67 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <script>
+        $(document).ready(function() {
+        $('.error').hide();  //untuk menyembunyikan pemberitahuan
+        $('.userid').blur(function(){ //fungsi blur digunakan
+        data=$('.userid').val();  
+        var len=data.length;
+        if(len<1) {   //pemberian aturan jika isi input tidak ada
+        $('.userid').next().show();  //menampilkan erorr
+        $('.password').attr('disabled',true);  //password tidak dapat diisi
+        $('.confpass').attr('disabled',true);  //confirm password tidak dapat diisi
+        }  
+        else { //jika input berisi
+        $('.userid').next().hide(); //error di hide
+        $('.password').removeAttr('disabled'); //disable terbuka atau dapat diisi
+        $('.confpass').removeAttr('disabled'); //disable terbuka atau dapat diisi
+        }
+        });
+        $('.password').blur(function(){ //fungsi blur untuk password
+        data=$('.password').val(); //pemberian fungsi
+        var len=data.length;
+        if(len<1) {  //pemberian aturan jika isi input tidak ada
+        $('.password').next().show(); //menampilkan error
+        $('.confpass').attr('disabled',true); //confirm password tidak dapat diisi
+        }
+        else { //jika input berisi
+        $('.password').next().hide(); //error disembunyikan
+        $('.confpass').removeAttr('disabled');//disables terbuka atau dapat diisi
+        }
+        });
+        $('.confpass').blur(function(){ //fungsi blur untuk confirm password
+        if($('.password').val() !=$('.confpass').val()) { //fungsi untuk confirm password jika password tidak sama dengan confirm password
+        $('.confpass').next().show(); //error ditampilkan karena nilainya tidak sama
+        }
+        else { //jika nilai password dan confrim password sama
+        $('.confpass').next().hide(); //error disembunyikan
+        }
+        });
+        }); 
+    </script>
+    <div class="container" >
+        <form>
+            <div class="container">
+                <p></p>
+                <span class="label" style="color: blue;">Isikan Nama Anda </span>
+                    <input type="text" class="userid" name="userid"/> 
+                <span class="error" style="color: red;"> Harap diisikan dengan nama anda</span>
+            </div>
+            <div class="container">
+                <span class="label" style="color: blue;"> Password <i class="fas fa-key" style="color: blueviolet;"></i> </span>
+                <input type="password" class="password"name="password" />
+                <span class="error" style="color: red;"> Harap diisikan dengan password anda</span>
+            </div>
+            <div class="container">
+                <span class="label" style="color: blue;">Konfirmasi Password</span>
+                <input type="password" class="confpass"name="confpass" />
+                <span class="error" style="color: rgb(221, 129, 9)"> Konfirmasi Password tidak sesuai</span>
+            </div>
+        </form>
+   </div>
+</body> 
