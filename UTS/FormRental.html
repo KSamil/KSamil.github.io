@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+    <head>  <!--Muhammad Syamil Fadlillah-->
+        <title>Book Rental</title><!-- Template dari "https://startbootstrap.com/template/small-business" -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </head>
+    <script>
+ $(document).ready(function() {
+ $('.error1').hide();
+ $('.submit').click(function(event){
+ var data=$('.infobox').val();
+ var len=data.length;
+ if(len<1)
+ { 
+ $('.error1').show();
+ event.preventDefault();
+ }
+ else
+ {
+ $('.error1').hide();
+ }
+ });
+}); 
+$(document).ready(function() {
+ $('.error2').hide();
+ $('.submit').click(function(event){
+ var data=$('.infobox').val();
+ if(valid_email(data))
+ {
+ $('.error2').hide();
+ }
+ else
+ {
+ $('.error2').show();
+ event.preventDefault();
+ }
+ });
+});
+function valid_email(email)
+{
+ var pattern= new RegExp(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/);
+ return pattern.test(email);
+} 
+$(document).ready(function() {
+ $('.error3').hide();
+ $('.submit').click(function(event){
+ var data=$('.infobox').val();
+ if(validate_phoneno(data))
+ {
+ $('.error3').hide();
+ }
+ else
+ {
+ $('.error3').show();
+ event.preventDefault();
+ }
+ });
+ });
+function validate_phoneno(ph)
+{
+ var pattern=new RegExp(/^[0-9-+]+$/);
+ return pattern.test(ph);
+} 
+$(document).ready(function() {
+ $('.error4').hide();
+ $('.submit').click(function(event){
+ var count=$('select option:selected').val();
+ if(count==0)
+ {
+ $('p.result').hide();
+ $('.error4').show();
+ }
+ else
+ {
+ $('.error4').hide();
+ $('p.result').show();
+ $('p.result').text('You have selected '+$('selectoption:selected').text());
+ }
+ event.preventDefault();
+ });
+}); 
+$(document).ready(function() {
+$('.error5').hide();
+$('.submit').click(function(event){
+var amt=0;
+var count=$('input:checked').length;
+if(count==0){
+$('p.result2').hide();
+$('.error5').show();
+}
+else{
+$('.error5').hide();
+$('p.result2').show();
+$('p.result2').text('You have selected'+$('input:checked').attr("value"));
+}
+event.preventDefault();
+});
+}); 
+    </script>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">Book JATRENT</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+        <br>
+            <br>
+                <br>
+        <div class="container">
+            <h3>Isi data berikut:</h3>
+            <form id="signup" method="post" action="">
+                <div class="row">
+                    <span class="label col-2">Nama </span>
+                    <input type="text" class="infobox col-5" name="userid"/>
+                    <span class="error1" style="color: red;">Wajib diisi</span>
+                </div>
+                <br>
+                <div class="row">
+                    <span class="label col-2">Alamat Email </span>
+                    <input type="text" class="infobox col-5"name="email" />
+                    <span class="error2" style="color: red;">Alamat Email Salah</span>
+                </div>
+                <br>
+                <div class="row">
+                    <span class="label col-2">Nomor telepon </span>
+                    <input type="text" class="infobox col-5" name="phone" />
+                    <span class="error3" style="color: red;"> Nomor Telepon hanya  dapat berisi angka</span>
+                </div>
+                <br>
+                <div class="row">
+                    <span class="label col-2">Pilih Tipe Motor</span>
+                    <select id="food" class="infobox col-5">
+                    <option value="0">Pilih</option>
+                    <option value="Motor Matic">Motor Matic</option>
+                    <option value="Motor Manual">Motor Manual</option>
+                    <option value="Motor Matic">Motor Sport</option>
+                    </select>
+                    <p class="error4" style="color: red;">Pilih Salah satu</p>
+                    <p class="result"></p>
+                </div>
+                <br>
+                    <span class="label">Pilih Metode Pembayaran</span><br>
+                    <input type="radio" name="paymode" class="infobox col-1" style="margin-top: 15px;" value="Transfer ATM">Transfer ATM<br>
+                    <input type="radio" name="paymode" class="infobox col-1" style="margin-top: 15px;" value="m-banking">m-banking<br>
+                    <input type="radio" name="paymode" class="infobox col-1" style="margin-top: 15px;" value="Visa Card">Visa Card<br>
+                    <input type="radio" name="paymode" class="infobox col-1" style="margin-top: 15px;" value="Bayar Ditempat">Bayar Ditempat<br>
+                    <p class="error5" style="color: red;">Pilih Salah satu </p>
+                    <p class="result2"></p>
+                <br>
+                <div class="row">
+                    <input class="submit btn btn-primary" type="submit button" value="Submit">
+                </div>
+            </form> 
+            <br class="clear">
+        </div>
+        <footer class="py-5 bg-dark">
+            <div class="container">
+              <p class="m-0 text-center text-white">Copyright &copy; JATRENT 2020</p>
+            </div>
+        </footer>
+    </body>
+</html>
